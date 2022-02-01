@@ -42,7 +42,7 @@ impl Get<u32> for MaxBytes {
 }
 
 impl CallFilterEntry {
-    pub fn new(pallet_name: &'static str, function_name: &'static str) -> Result<Self, ()> {
+	pub fn new(pallet_name: &'static str, function_name: &'static str) -> Result<Self, ()> {
 		Ok(Self {
 			pallet_name: pallet_name.as_bytes().to_vec().try_into()?,
 			function_name: function_name.as_bytes().to_vec().try_into()?,
