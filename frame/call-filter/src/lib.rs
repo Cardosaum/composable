@@ -93,7 +93,7 @@ pub mod pallet {
 			ensure!(entry.valid(), Error::<T>::InvalidString);
 			// We are not allowed to disable this pallet.
 			ensure!(
-				entry.pallet_name != <Self as PalletInfoAccess>::name().as_bytes(),
+				entry.pallet_name.to_vec() != <Self as PalletInfoAccess>::name().as_bytes(),
 				Error::<T>::CannotDisable
 			);
 			Self::do_disable(&entry)?;
@@ -159,10 +159,11 @@ pub mod pallet {
 	{
 		fn contains(call: &T::Call) -> bool {
 			let CallMetadata { function_name, pallet_name } = call.get_call_metadata();
-			DisabledCalls::<T>::contains_key(CallFilterEntry {
-				pallet_name: pallet_name.as_bytes().to_vec(),
-				function_name: function_name.as_bytes().to_vec(),
-			})
+			if let Ok(entry) = CallFilterEntry::new(pallet_name, function_name) {
+				DisabledCalls::<T>::contains_key(entry)
+			} else {
+				false
+			}
 		}
 	}
 }
