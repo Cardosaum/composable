@@ -509,6 +509,50 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    lending: {
+      /**
+       * Only assets for which we can track price are supported
+       **/
+      AssetNotSupportedByOracle: AugmentedError<ApiType>;
+      AssetPriceNotFound: AugmentedError<ApiType>;
+      BorrowAndRepayInSameBlockIsNotSupported: AugmentedError<ApiType>;
+      BorrowDoesNotExist: AugmentedError<ApiType>;
+      BorrowerDataCalculationFailed: AugmentedError<ApiType>;
+      BorrowIndexDoesNotExist: AugmentedError<ApiType>;
+      BorrowRateDoesNotExist: AugmentedError<ApiType>;
+      CannotRepayMoreThanBorrowAmount: AugmentedError<ApiType>;
+      CannotWithdrawFromProvidedBorrowAccount: AugmentedError<ApiType>;
+      CollateralDepositFailed: AugmentedError<ApiType>;
+      CollateralFactorIsLessOrEqualOne: AugmentedError<ApiType>;
+      ExceedLendingCount: AugmentedError<ApiType>;
+      InvalidTimestampOnBorrowRequest: AugmentedError<ApiType>;
+      LiquidationFailed: AugmentedError<ApiType>;
+      MarketAndAccountPairNotFound: AugmentedError<ApiType>;
+      MarketCollateralWasNotDepositedByAccount: AugmentedError<ApiType>;
+      /**
+       * The market could not be found
+       **/
+      MarketDoesNotExist: AugmentedError<ApiType>;
+      MarketIsClosing: AugmentedError<ApiType>;
+      NotEnoughBorrowAsset: AugmentedError<ApiType>;
+      NotEnoughCollateral: AugmentedError<ApiType>;
+      NotEnoughCollateralToBorrowAmount: AugmentedError<ApiType>;
+      NotEnoughRent: AugmentedError<ApiType>;
+      Overflow: AugmentedError<ApiType>;
+      PriceOfInitialBorrowVaultShoyldBeGreaterThanZero: AugmentedError<ApiType>;
+      RepayAmountMustBeGraterThanZero: AugmentedError<ApiType>;
+      TransferFailed: AugmentedError<ApiType>;
+      Unauthorized: AugmentedError<ApiType>;
+      Underflow: AugmentedError<ApiType>;
+      /**
+       * vault provided does not exist
+       **/
+      VaultNotFound: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     liquidations: {
       NoLiquidationEngineFound: AugmentedError<ApiType>;
       /**
