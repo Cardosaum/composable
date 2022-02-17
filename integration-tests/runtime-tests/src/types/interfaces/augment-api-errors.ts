@@ -539,7 +539,10 @@ declare module '@polkadot/api-base/types/errors' {
       NotEnoughCollateralToBorrowAmount: AugmentedError<ApiType>;
       NotEnoughRent: AugmentedError<ApiType>;
       Overflow: AugmentedError<ApiType>;
-      PriceOfInitialBorrowVaultShoyldBeGreaterThanZero: AugmentedError<ApiType>;
+      /**
+       * borrow assets should have enough value as per oracle
+       **/
+      PriceOfInitialBorrowVaultShouldBeGreaterThanZero: AugmentedError<ApiType>;
       RepayAmountMustBeGraterThanZero: AugmentedError<ApiType>;
       TransferFailed: AugmentedError<ApiType>;
       Unauthorized: AugmentedError<ApiType>;

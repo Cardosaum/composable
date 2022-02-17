@@ -200,7 +200,8 @@ declare module '@polkadot/api-base/types/consts' {
     };
     lending: {
       /**
-       * Minimal price of borrow asset in Oracle price required to create
+       * Minimal price of borrow asset in Oracle price required to create.
+       * Examples, 100 USDC.
        * Creators puts that amount and it is staked under Vault account.
        * So he does not owns it anymore.
        * So borrow is both stake and tool to create market.
@@ -225,7 +226,7 @@ declare module '@polkadot/api-base/types/consts' {
        * Vault can take that amount if reconfigured so, but that may be changed during runtime
        * upgrades.
        **/
-      marketCreationStake: u128 & AugmentedConst<ApiType>;
+      oracleMarketCreationStake: u128 & AugmentedConst<ApiType>;
       palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Generic const

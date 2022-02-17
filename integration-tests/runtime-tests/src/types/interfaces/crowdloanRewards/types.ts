@@ -1,18 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, Enum, Null, Struct, U8aFixed, Vec, bool, i128, u128, u32, u64 } from '@polkadot/types-codec';
+import type { Enum, Null, Struct, U8aFixed, Vec, bool, i128, u128, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { EthereumAccountId } from '@polkadot/types/interfaces/eth';
 import type { EcdsaSignature, MultiSignature } from '@polkadot/types/interfaces/extrinsics';
 import type { ParachainInherentData, PersistedValidationData } from '@polkadot/types/interfaces/parachains';
 import type { AccountId32, Balance, Percent, Permill, Perquintill } from '@polkadot/types/interfaces/runtime';
-
-/** @name ComposableSupportValidationValidated */
-export interface ComposableSupportValidationValidated extends Struct {
-  readonly value: ComposableTraitsLendingCreateInput;
-  readonly reservedFactor: Perquintill;
-}
 
 /** @name ComposableTraitsAssetsXcmAssetLocation */
 export interface ComposableTraitsAssetsXcmAssetLocation extends Null {}
@@ -44,7 +38,7 @@ export interface ComposableTraitsGovernanceSignedRawOrigin extends Null {}
 /** @name ComposableTraitsLendingCreateInput */
 export interface ComposableTraitsLendingCreateInput extends Struct {
   readonly updatable: ComposableTraitsLendingUpdateInput;
-  readonly currencyPair: ComposableTraitsDefiCurrencyPair;
+  readonly reservedFactor: Perquintill;
 }
 
 /** @name ComposableTraitsLendingMarketConfig */
@@ -98,7 +92,11 @@ export interface ComposableTraitsLendingUpdateInput extends Struct {
   readonly underCollaterizedWarnPercent: Percent;
   readonly liquidators: Vec<u32>;
   readonly interestRateModel: ComposableTraitslendingMathInterestRateModel;
+  readonly currencyPair: ComposableTraitsDefiCurrencyPair;
 }
+
+/** @name ComposableTraitsOraclePrice */
+export interface ComposableTraitsOraclePrice extends Null {}
 
 /** @name ComposableTraitsTimeLinearDecrease */
 export interface ComposableTraitsTimeLinearDecrease extends Struct {
@@ -114,21 +112,14 @@ export interface ComposableTraitsTimeStairstepExponentialDecrease extends Struct
 /** @name ComposableTraitsTimeTimeReleaseFunction */
 export interface ComposableTraitsTimeTimeReleaseFunction extends Enum {
   readonly isLinearDecrease: boolean;
-  readonly asLinearDecrease: {
-    readonly type: ComposableTraitsTimeLinearDecrease;
-  } & Struct;
+  readonly asLinearDecrease: ComposableTraitsTimeLinearDecrease;
   readonly isStairstepExponentialDecrease: boolean;
   readonly asStairstepExponentialDecrease: ComposableTraitsTimeStairstepExponentialDecrease;
   readonly type: 'LinearDecrease' | 'StairstepExponentialDecrease';
 }
 
 /** @name ComposableTraitsVaultVaultConfig */
-export interface ComposableTraitsVaultVaultConfig extends Struct {
-  readonly assetId: u128;
-  readonly reserved: Perquintill;
-  readonly manager: AccountId32;
-  readonly strategies: BTreeMap<AccountId32, Perquintill>;
-}
+export interface ComposableTraitsVaultVaultConfig extends Null {}
 
 /** @name ComposableTraitsVestingVestingSchedule */
 export interface ComposableTraitsVestingVestingSchedule extends Null {}
@@ -264,13 +255,7 @@ export interface PalletLiquidationsLiquidationStrategyConfiguration extends Enum
   readonly isDutchAuction: boolean;
   readonly asDutchAuction: ComposableTraitsTimeTimeReleaseFunction;
   readonly isUniswapV2: boolean;
-  readonly asUniswapV2: {
-    readonly slippage: Perquintill;
-  } & Struct;
   readonly isXcmDex: boolean;
-  readonly asXcmDex: {
-    readonly parachainId: u32;
-  } & Struct;
   readonly type: 'DutchAuction' | 'UniswapV2' | 'XcmDex';
 }
 

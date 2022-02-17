@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ComposableTraitsAssetsXcmAssetLocation, ComposableTraitsCallFilterCallFilterEntry, ComposableTraitsVestingVestingSchedule, FrameSupportScheduleLookupError, PalletCrowdloanRewardsModelsRemoteAccount, PalletCurrencyFactoryRangesRange, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletDutchAuctionSellOrder, PalletMosaicDecayBudgetPenaltyDecayer, PalletMosaicNetworkInfo } from '@composable/types/interfaces/crowdloanRewards';
+import type { ComposableTraitsAssetsXcmAssetLocation, ComposableTraitsCallFilterCallFilterEntry, ComposableTraitsLendingCreateInput, ComposableTraitsLendingUpdateInput, ComposableTraitsVestingVestingSchedule, FrameSupportScheduleLookupError, PalletCrowdloanRewardsModelsRemoteAccount, PalletCurrencyFactoryRangesRange, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletDutchAuctionSellOrder, PalletMosaicDecayBudgetPenaltyDecayer, PalletMosaicNetworkInfo } from '@composable/types/interfaces/crowdloanRewards';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
@@ -412,6 +412,41 @@ declare module '@polkadot/api-base/types/events' {
        * A account index has been frozen to its current account ID.
        **/
       IndexFrozen: AugmentedEvent<ApiType, [u32, AccountId32]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    lending: {
+      /**
+       * Event emitted when user borrows from given market.
+       **/
+      Borrowed: AugmentedEvent<ApiType, [AccountId32, u32, u128]>;
+      /**
+       * Event emitted when collateral is deposited.
+       **/
+      CollateralDeposited: AugmentedEvent<ApiType, [AccountId32, u32, u128]>;
+      /**
+       * Event emitted when collateral is withdrawed.
+       **/
+      CollateralWithdrawn: AugmentedEvent<ApiType, [AccountId32, u32, u128]>;
+      /**
+       * Event emitted when a liquidation is initiated for a loan.
+       **/
+      LiquidationInitiated: AugmentedEvent<ApiType, [u32, Vec<AccountId32>]>;
+      /**
+       * Event emitted when new lending market is created.
+       **/
+      MarketCreated: AugmentedEvent<ApiType, [u32, u64, AccountId32, ComposableTraitsLendingCreateInput]>;
+      MarketUpdated: AugmentedEvent<ApiType, [u32, ComposableTraitsLendingUpdateInput]>;
+      /**
+       * Event emitted when user repays borrow of beneficiary in given market.
+       **/
+      RepaidBorrow: AugmentedEvent<ApiType, [AccountId32, u32, AccountId32, u128]>;
+      /**
+       * Event emitted to warn that loan may go under collaterized soon.
+       **/
+      SoonMayUnderCollaterized: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
        * Generic event
        **/
