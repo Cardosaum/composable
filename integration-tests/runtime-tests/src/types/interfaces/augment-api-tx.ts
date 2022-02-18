@@ -536,6 +536,10 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       initialize: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
+       * Initialize the pallet at the given transaction block.
+       **/
+      initializeAt: AugmentedSubmittable<(at: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
        * Populate pallet by adding more rewards.
        * Can be called multiple times. Idempotent.
        * Can only be called before `initialize`.

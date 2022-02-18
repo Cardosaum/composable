@@ -239,6 +239,7 @@ declare module '@polkadot/api-base/types/errors' {
       InvalidClaim: AugmentedError<ApiType>;
       InvalidProof: AugmentedError<ApiType>;
       NotAssociated: AugmentedError<ApiType>;
+      NotClaimableYet: AugmentedError<ApiType>;
       NothingToClaim: AugmentedError<ApiType>;
       NotInitialized: AugmentedError<ApiType>;
       /**
