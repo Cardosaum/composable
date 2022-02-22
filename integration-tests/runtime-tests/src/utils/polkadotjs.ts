@@ -17,9 +17,10 @@ export async function sendAndWaitForSuccess<T extends AnyTuple>(
   sender: AddressOrPair,
   filter: (event: IEvent<AnyTuple>) => event is IEvent<T>,
   call: SubmittableExtrinsic<"promise">,
-  intendedToFail=false
+  intendedToFail=false,
+  verbose=false
 ): Promise<IEvent<T>> {
-  return await sendAndWaitFor(api, sender, filter, call, intendedToFail);
+  return await sendAndWaitFor(api, sender, filter, call, intendedToFail, verbose);
 }
 
 export async function waitForBlocks(n=1) {
@@ -95,6 +96,7 @@ export function sendUnsignedAndWaitFor<T extends AnyTuple>(
  * @param filter which event to filter for
  * @param call a call that can be submitted to the chain
  * @param {boolean} intendedToFail If true a failed submission will be counted as a success.
+ * @param verbose Prints all received events
  * @returns event that fits the filter
  */
 export function sendAndWaitFor<T extends AnyTuple>(
@@ -102,12 +104,17 @@ export function sendAndWaitFor<T extends AnyTuple>(
   sender: AddressOrPair,
   filter: (event: IEvent<AnyTuple>) => event is IEvent<T>,
   call: SubmittableExtrinsic<"promise">,
-  intendedToFail:boolean
+  intendedToFail:boolean,
+  verbose:boolean
 ): Promise<IEvent<T>> {
   return new Promise<IEvent<T>>(function (resolve, reject) {
     call
       .signAndSend(sender, {nonce: -1}, function (res) {
         const {dispatchError, status} = res;
+        if (verbose)
+          res.events.forEach((e) => {
+            console.debug(e);
+          });
         if (dispatchError) {
           if (dispatchError.isModule) {
             // for module errors, we have the section indexed, lookup
@@ -154,7 +161,7 @@ export function sendAndWaitFor<T extends AnyTuple>(
           // This happens when we send 2 transaction from the same wallet, at the same time.
           // We solve it by waiting 2 seconds and retrying it.
           await sleep(2000);
-          const {data: [result],} = await sendAndWaitFor(api, sender, filter, call, intendedToFail).catch(function (exc) {
+          const {data: [result],} = await sendAndWaitFor(api, sender, filter, call, intendedToFail, verbose).catch(function (exc) {
             reject(exc);
             return {data:[exc]};
           });
