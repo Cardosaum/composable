@@ -24,7 +24,7 @@ exports.mochaHooks = {
     const rpc = Object.keys(definitions).reduce((accumulator, key) => ({ ...accumulator, [key]: definitions[key].rpc }), {});
     const types = Object.values(definitions).reduce((accumulator, { types }) => ({ ...accumulator, ...types }), {});
 
-    global.endpoint = `ws://127.0.0.1:9988`;
+    global.endpoint = `ws://central.local:9988`;
     const provider = new WsProvider(global.endpoint);
     console.debug(`Establishing connection to ${global.endpoint}...`);
     const apiOptions: ApiOptions = {
