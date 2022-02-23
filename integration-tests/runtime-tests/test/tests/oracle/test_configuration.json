@@ -1,6 +1,6 @@
 {
   "enabledTests": {
-    "enabled": true,
+    "enabled": false,
     "addAssetAndInfo__success": {
       "enabled": true,
       "add1": true

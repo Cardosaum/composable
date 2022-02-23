@@ -28,7 +28,7 @@
       }
     },
     "tx": {
-      "enabled": true,
+      "enabled": false,
       "populate_success": {
         "enabled": true,
         "populate1": true

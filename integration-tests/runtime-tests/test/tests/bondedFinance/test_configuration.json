@@ -1,6 +1,6 @@
 {
   "enabledTests": {
-    "enabled": true,
+    "enabled": false,
     "offer_bond__success": {
       "enabled": true,
       "create1": true,

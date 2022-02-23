@@ -306,6 +306,7 @@ describe('Lending Tests', function() {
       const amount = api.createType('u128', 250000000000);
       const result = await depositCollateralHandler(lenderWallet, marketId, amount);
       console.debug(result.toString());
+      console.debug(lenderWallet);
     });
   });
 
