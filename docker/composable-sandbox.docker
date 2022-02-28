@@ -30,7 +30,7 @@ RUN groupadd -g 1000 service && useradd -m -s /bin/sh -g 1000 -G service service
 	curl -fsSL https://deb.nodesource.com/setup_17.x | bash - && \
 	apt-get update && apt-get install -y --no-install-recommends nodejs && \
 	npm install --global npm yarn && \
-	curl https://github.com/paritytech/polkadot/releases/download/v0.9.16/polkadot -Lo /apps/polkadot/target/release/polkadot && \
+	curl https://github.com/paritytech/polkadot/releases/download/v0.9.17/polkadot -Lo /apps/polkadot/target/release/polkadot && \
 	chmod +x /apps/polkadot/target/release/polkadot && \
 	curl https://github.com/galacticcouncil/Basilisk-node/releases/download/v7.0.0/basilisk -Lo /apps/Basilisk-node/target/release/basilisk && \
 	chmod +x /apps/Basilisk-node/target/release/basilisk && \

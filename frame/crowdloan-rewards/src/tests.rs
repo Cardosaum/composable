@@ -62,7 +62,7 @@ fn test_populate_ok() {
 		// Try to repopulate using the same generated accounts
 		// In this case, the total shouldn't change as its duplicate
 		// No error will be yield but the process should be = identity
-		let s = frame_support::storage_root();
+		let s = frame_support::storage_root(0);
 		assert_ok!(CrowdloanRewards::populate(Origin::root(), gen(100, DEFAULT_REWARD)));
 		assert_eq!(s, frame_support::storage_root());
 		assert_eq!(CrowdloanRewards::total_rewards(), 100 * DEFAULT_REWARD);
