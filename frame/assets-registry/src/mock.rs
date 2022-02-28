@@ -7,6 +7,7 @@ use sp_runtime::{
 	testing::Header,
 	traits::{BlakeTwo256, IdentityLookup},
 };
+pub use composable_traits::assets::XcmAssetLocation;
 
 pub type AccountId = u32;
 type Block = frame_system::mocking::MockBlock<Test>;
@@ -71,6 +72,7 @@ impl pallet_assets_registry::Config for Test {
 	type Event = Event;
 	type LocalAssetId = u128;
 	type ForeignAssetId = u128;
+	type Location = XcmAssetLocation;
 	type UpdateAdminOrigin = EnsureSignedBy<RootAccount, AccountId>;
 	type LocalAdminOrigin = pallet_assets_registry::EnsureLocalAdmin<Test>;
 	type ForeignAdminOrigin = pallet_assets_registry::EnsureForeignAdmin<Test>;
